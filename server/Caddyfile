@@ -1,0 +1,15 @@
+{
+    storage file_system {
+        root /data/caddy;
+    }
+}
+notdns.win {
+    reverse_proxy 127.0.0.1:8000
+}
+:8080 {
+    reverse_proxy 127.0.0.1:8000
+}
+
+www.notdns.win {
+    redir https://notdns.win/
+}

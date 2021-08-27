@@ -1,0 +1,20 @@
+version: '2.1'
+services:
+  host:
+    image: ide.home.notmike.uk/notdns-server
+    build:
+      context: server
+    network_mode: host
+    restart: always
+    volumes:
+     - data:/data
+     - sessions:/var/lib/php/sessions
+  anycast:
+    image: ide.home.notmike.uk/notdns-anycast
+    build:
+      context: anycast
+    restart: always
+    privileged: true
+volumes:
+  data:
+  sessions:
