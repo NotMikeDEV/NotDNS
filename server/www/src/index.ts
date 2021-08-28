@@ -1,8 +1,3 @@
-class Login {
-  render() {
-    
-  }
-}
 import {createServer} from "http"
 import * as express from "express"
 const app = express()
