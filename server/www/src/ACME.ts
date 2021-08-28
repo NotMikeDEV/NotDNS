@@ -54,13 +54,13 @@ export async function Provision(Domain:string) {
                 if (Challenge.type == 'dns-01')
                 {
                     const keyAuthorization = await ACMEClient.getChallengeKeyAuthorization(Challenge);
-                    await AppendLog("ACME Challenge", Auth.identifier.value, Challenge.token, keyAuthorization);
+                    await AppendLog("ACME Challenge", JSON.stringify(Auth.identifier.value), JSON.stringify(Challenge.token), JSON.stringify(keyAuthorization));
                     ACMEChallenges["_acme-challenge." + Domain] = keyAuthorization;
-                    await AppendLog("verifyChallenge", Auth, Challenge)
+                    await AppendLog("verifyChallenge", JSON.stringify(Auth), JSON.stringify(Challenge))
                     await ACMEClient.verifyChallenge(Auth, Challenge)
-                    await AppendLog("completeChallenge", Challenge)
+                    await AppendLog("completeChallenge", JSON.stringify(Challenge))
                     await ACMEClient.completeChallenge(Challenge)
-                    await AppendLog("ACME Validation Response", await ACMEClient.waitForValidStatus(Challenge));
+                    await AppendLog("ACME Validation Response", JSON.stringify(await ACMEClient.waitForValidStatus(Challenge)));
                 }
             }
         }
